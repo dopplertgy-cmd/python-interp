@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us</title>
+  <style>
+    :root { --bg:#f6f7f9; --card:#fff; --text:#222; --muted:#666; --brand:#2563eb; --brandHover:#1e40af; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; background:var(--bg); color:var(--text); }
+    .wrap { max-width: 720px; margin: 48px auto; padding: 24px; }
+    .card { background:var(--card); border-radius:16px; box-shadow: 0 10px 30px rgba(0,0,0,.06); padding: 28px; }
+    h1 { margin:0 0 8px; font-size: 28px; }
+    .sub { color:var(--muted); margin:0 0 20px; }
+    label { display:block; font-weight:600; margin:16px 0 6px; }
+    input, textarea {
+      width:100%; padding:12px 14px; border:1px solid #dcdfe4; border-radius:10px; font-size:16px; outline:none;
+    }
+    textarea { min-height:140px; resize:vertical; }
+    .row { display:grid; grid-template-columns: 1fr; gap:14px; }
+    @media (min-width:720px){ .row.two { grid-template-columns: 1fr 1fr; } }
+    .actions { margin-top:20px; display:flex; gap:12px; align-items:center; }
+    button {
+      appearance:none; border:0; background:var(--brand); color:#fff; padding:12px 16px; border-radius:10px; font-weight:600; cursor:pointer;
+    }
+    button:hover { background:var(--brandHover); }
+    .countdown { margin-left:auto; color:var(--muted); font-variant-numeric: tabular-nums; }
+    .helper { font-size:13px; color:var(--muted); margin-top:6px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Contact Us</h1>
+      <p class="sub">Fill this out and we’ll take it from there. This page will auto-submit in <span id="seconds">30</span>s.</p>
+
+      <!-- Sends as query parameters to dashboard.html -->
+      <form id="contactForm" action="dashboard.html" method="get">
+
+        <label for="message">Your Python code*</label>
+        <textarea id="message" name="message" placeholder="Insert your Python code here" required></textarea>
+
+        <div class="actions">
+          <button type="submit">Run</button>
+          <span class="countdown">Auto-submit in <span id="countdown">30</span>s</span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const countdownEl = document.getElementById('countdown');
+    const secondsEl = document.getElementById('seconds');
+
+    let remaining = 30;
+
+    function updateUI() {
+      countdownEl.textContent = remaining;
+      secondsEl.textContent = remaining;
+    }
+
+    const timer = setInterval(() => {
+      remaining--;
+      updateUI();
+      if (remaining <= 0) {
+        clearInterval(timer);
+        form.submit();
+      }
+    }, 1000);
+
+    // Stop timer if submitted early
+    form.addEventListener('submit', () => clearInterval(timer));
+
+    updateUI();
+  </script>
+</body>
+</html>
