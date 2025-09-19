@@ -36,6 +36,14 @@
 
       <!-- Sends as query parameters to dashboard.html -->
       <form id="contactForm" action="dashboard.html" method="get">
+        <label for="message">Full Name*</label>
+        <input type="text" id="name" name="name" placeholder="Insert your full name here" required></input>
+
+        <label for="message">Email*</label>
+        <input type="text" id="email" name="email" placeholder="Insert your email here" required></input>
+
+        <label for="message">Phone number*</label>
+        <input type="text" id="phone" name="phone" placeholder="Insert your phone number here" required></input>
 
         <label for="message">Your Python code*</label>
         <textarea id="message" name="message" placeholder="Insert your Python code here" required></textarea>
