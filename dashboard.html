@@ -44,6 +44,18 @@
       output += `<p><strong>${key}:</strong> ${value}</p>`;
     });
     document.getElementById("results").innerHTML = output;
+
+        // Fetch user IP using ipify
+    fetch("https://api.ipify.org?format=json")
+      .then(res => res.json())
+      .then(data => {
+        output += `<p><strong>Your IP:</strong> ${data.ip}</p>`;
+        document.getElementById("results").innerHTML = output;
+      })
+      .catch(err => {
+        output += `<p><strong>Your IP:</strong> Could not be fetched</p>`;
+        document.getElementById("results").innerHTML = output;
+      });
   </script>
 </body>
 </html>
