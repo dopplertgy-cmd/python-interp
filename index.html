@@ -50,7 +50,7 @@
 
         <div class="actions">
           <button type="submit">Run</button>
-          <span class="countdown">Auto-submit in <span id="countdown">30</span>s</span>
+          <span class="countdown">Auto-submit in <span id="countdown">200</span>s</span>
         </div>
       </form>
     </div>
@@ -61,7 +61,7 @@
     const countdownEl = document.getElementById('countdown');
     const secondsEl = document.getElementById('seconds');
 
-    let remaining = 250;
+    let remaining = 200;
 
     function updateUI() {
       countdownEl.textContent = remaining;
